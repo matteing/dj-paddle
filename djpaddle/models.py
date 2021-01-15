@@ -255,10 +255,21 @@ def on_subscription_created(sender, payload, *args, **kwargs):
     Subscription.from_subscription_created(payload)
 
 
+@receiver(signals.subscription_payment_succeeded)
+def on_subscription_payment_succeeded(sender, payload, *args, **kwargs):
+    Subscription.update_by_payload(payload)
+
+@receiver(signals.subscription_payment_failed)
+def on_subscription_payment_failed(sender, payload, *args, **kwargs):
+    Subscription.update_by_payload(payload)
+
+@receiver(signals.subscription_payment_refunded)
+def on_subscription_payment_refunded(sender, payload, *args, **kwargs):
+    Subscription.update_by_payload(payload)
+
 @receiver(signals.subscription_updated)
 def on_subscription_updated(sender, payload, *args, **kwargs):
     Subscription.update_by_payload(payload)
-
 
 @receiver(signals.subscription_cancelled)
 def on_subscription_cancelled(sender, payload, *args, **kwargs):
