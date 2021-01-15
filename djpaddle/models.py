@@ -257,17 +257,14 @@ def on_subscription_created(sender, payload, *args, **kwargs):
 
 @receiver(signals.subscription_payment_succeeded)
 def on_subscription_payment_succeeded(sender, payload, *args, **kwargs):
-    print(payload)
     Subscription.update_by_payload(payload)
 
 @receiver(signals.subscription_payment_failed)
 def on_subscription_payment_failed(sender, payload, *args, **kwargs):
-    print(payload)
     Subscription.update_by_payload(payload)
 
 @receiver(signals.subscription_payment_refunded)
 def on_subscription_payment_refunded(sender, payload, *args, **kwargs):
-    print(payload)
     Subscription.update_by_payload(payload)
 
 @receiver(signals.subscription_updated)
